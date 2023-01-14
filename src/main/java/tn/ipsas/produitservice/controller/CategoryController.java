@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.*;
 import tn.ipsas.coremodels.models.produit.Category;
 import tn.ipsas.produitservice.service.CategoryService;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/categorie")
 public class CategoryController {
     private final CategoryService service;
 
@@ -19,6 +21,10 @@ public class CategoryController {
     public Page<Category> page(Pageable pageable) {
         return service.getAll(pageable);
     }
+    @GetMapping("all")
+    public List<Category> all() {
+        return service.getAll();
+    }
     @GetMapping("{id}")
     public Category byId(@PathVariable("id") String id) {
         return service.getById(id);
@@ -26,7 +32,9 @@ public class CategoryController {
     @PutMapping
     public Category add(@RequestBody Category category) {
         category.setId(null);
-        return service.save(category);
+        Category result =  service.save(category);
+
+        return result;
     }
     @PutMapping("{id}")
     public Category update(@PathVariable("id") String id, @RequestBody Category category) {

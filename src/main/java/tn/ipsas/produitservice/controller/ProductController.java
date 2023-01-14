@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.*;
 import tn.ipsas.coremodels.models.produit.Product;
 import tn.ipsas.produitservice.service.ProductService;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("product")
+@RequestMapping("produit")
 public class ProductController {
     private final ProductService service;
 
@@ -27,6 +29,10 @@ public class ProductController {
     public Product add(@RequestBody Product product) {
         product.setId(null);
         return service.save(product);
+    }
+    @GetMapping("all")
+    public List<Product> getAll() {
+        return service.getAll();
     }
     @PutMapping("{id}")
     public Product update(@PathVariable("id") String id, @RequestBody Product product) {

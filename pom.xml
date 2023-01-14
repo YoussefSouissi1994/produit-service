@@ -23,7 +23,7 @@
         <repository>
             <id>core-models</id>
             <name>core-models</name>
-            <url>file:../modules/core-models</url>
+            <url>file:./modules/core-models</url>
         </repository>
     </repositories>
     <dependencies>

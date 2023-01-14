@@ -8,6 +8,8 @@ import tn.ipsas.coremodels.models.produit.Category;
 import tn.ipsas.coremodels.models.produit.Product;
 import tn.ipsas.produitservice.data.CategoryRepository;
 
+import java.util.List;
+
 @Service
 public class CategoryService {
     private final CategoryRepository repository;
@@ -17,6 +19,10 @@ public class CategoryService {
     }
     public Page<Category> getAll(Pageable pageable) {
         return repository.findAll(pageable);
+    }
+
+    public List<Category> getAll() {
+        return repository.findAll();
     }
     public Category getById(String id) {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(id));
